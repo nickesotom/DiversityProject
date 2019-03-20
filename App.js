@@ -75,7 +75,6 @@ const WelcomeTabNavigator = createBottomTabNavigator({
       )
     }
   },
-  
 }, {
     tabBarOptions: {
     }
