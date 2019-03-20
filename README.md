@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # DiversityCapstoneProject
 
 libraries that are used in this project include:
@@ -25,3 +26,6 @@ There's no order in which these have to be done
 
 Styling can be done whenever, whether it be while making the screen or whenever after it.
 Comments still need to get added too so everyone knows what is going on.
+=======
+# DiversityProject
+>>>>>>> e31d5ab1768608079219e468652205643ce304bb
