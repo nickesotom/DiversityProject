@@ -11,6 +11,7 @@ import News from './src/screens/News';
 import Stories from './src/screens/Stories';
 import Education from './src/screens/Education';
 import Icon from '@expo/vector-icons/Ionicons'
+import { API_KEY } from './src/config/firebaseAPI'
 
 // git remote add origin [//your github url]
 
@@ -22,7 +23,7 @@ import Icon from '@expo/vector-icons/Ionicons'
 
 // git push origin master
 const firebaseConfig = {
-  apiKey: "AIzaSyDGVpdRYPl-qhSKbhX_un7DvT-_j6JmyaE",
+  apiKey: API_KEY,
   authDomain: "diversity-app-project.firebaseapp.com",
   databaseURL: "https://diversity-app-project.firebaseio.com",
   projectId: "diversity-app-project",
