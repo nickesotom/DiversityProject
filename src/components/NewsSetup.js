@@ -27,8 +27,8 @@ class NewsSetup extends Component {
     const defaultImg = 'https://wallpaper.wiki/wp-content/uploads/2017/04/wallpaper.wiki-Images-HD-Diamond-Pattern-PIC-WPB009691.jpg';
 
     return (
-      <TouchableHighlight 
       
+      <TouchableHighlight 
         onPress={() => Linking.openURL(url)}>
         <Card
           featuredTitle={title}

@@ -11,7 +11,9 @@ import News from './src/screens/News';
 import Stories from './src/screens/Stories';
 import Education from './src/screens/Education';
 import Icon from '@expo/vector-icons/Ionicons'
-import { API_KEY } from './src/config/firebaseAPI'
+import { firebaseConfig } from './src/config/firebaseAPI'
+
+firebase.initializeApp(firebaseConfig);
 
 // git remote add origin [//your github url]
 
@@ -22,15 +24,7 @@ import { API_KEY } from './src/config/firebaseAPI'
 // //now, push your work to your new repo
 
 // git push origin master
-const firebaseConfig = {
-  apiKey: API_KEY,
-  authDomain: "diversity-app-project.firebaseapp.com",
-  databaseURL: "https://diversity-app-project.firebaseio.com",
-  projectId: "diversity-app-project",
-  storageBucket: "diversity-app-project.appspot.com",
-  messagingSenderId: "946930009531"
-};
-firebase.initializeApp(firebaseConfig);
+
 
 // export default class App extends React.Component {
 //   render() {
