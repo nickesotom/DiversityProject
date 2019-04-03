@@ -15,6 +15,7 @@ import { Constants } from "expo";
 import { TextInput } from "react-native-gesture-handler";
 
 class Events extends Component {
+  
   constructor(props) {
     super(props);
     
@@ -27,6 +28,7 @@ class Events extends Component {
     };
     this.addItem = this.addItem.bind(this);
   }
+
 
   componentDidMount() {
     // const { currentUser } = firebase.auth()

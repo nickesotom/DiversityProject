@@ -10,9 +10,9 @@ import Events from './src/screens/Events';
 import News from './src/screens/News';
 import Stories from './src/screens/Stories';
 import Education from './src/screens/Education';
-import Icon from '@expo/vector-icons/Ionicons'
-import { firebaseConfig } from './src/config/firebaseAPI'
-
+import Icon from '@expo/vector-icons/Ionicons';
+import { firebaseConfig } from './src/config/firebaseAPI';
+import Holiday from './src/screens/Holiday';
 firebase.initializeApp(firebaseConfig);
 
 // git remote add origin [//your github url]
@@ -46,14 +46,6 @@ const WelcomeTabNavigator = createBottomTabNavigator({
       )
     }
   },
-  Stories: {
-    screen: Stories,
-    navigationOptions: {
-      tabBarIcon: ({ tintColor }) => (
-        <Icon name="md-book" color={tintColor} size={24} />
-      )
-    }
-  },
   News: {
     screen: News,
     navigationOptions: {
@@ -62,11 +54,27 @@ const WelcomeTabNavigator = createBottomTabNavigator({
       )
     }
   },
+  Stories: {
+    screen: Stories,
+    navigationOptions: {
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name="md-book" color={tintColor} size={24} />
+      )
+    }
+  },
   Education: {
     screen: Education,
     navigationOptions: {
       tabBarIcon: ({ tintColor }) => (
         <Icon name="md-information-circle-outline" color={tintColor} size={24} />
+      )
+    }
+  },
+  Holiday: {
+    screen: Holiday,
+    navigationOptions: {
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name="md-calendar" color={tintColor} size={24} />
       )
     }
   },
@@ -112,6 +120,9 @@ export default createAppContainer(createSwitchNavigator({
   },
   Events: {
     screen: AppDrawerNavigator
+  },
+  Holiday: {
+    screen: Holiday
   }
 }, {
     initialRouteName: 'Loading',
