@@ -5,5 +5,3 @@ npm-debug.*
 *.p12
 *.key
 *.mobileprovision
-env.js
-firebaseAPI.js
