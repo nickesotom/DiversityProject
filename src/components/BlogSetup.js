@@ -11,42 +11,40 @@ import moment from 'moment';
 
 
 
-class HolidaySetup extends Component {
+class BlogSetup extends Component {
   render() {
     const {
-      name,
-      description,
-      date
-    } = this.props.holidays;
-    
-    const { noteStyle, featuredTitleStyle } = styles;
-    // const time = moment(publishedAt || moment.now()).fromNow();
-    const defaultImg = 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Continents.svg/1280px-Continents.svg.png';
+      image,
+      title, 
+      summary,
+      link,
+      author
+    } = this.props.blogs;
 
+    const { noteStyle, featuredTitleStyle } = styles;
     return (
 
-      <TouchableHighlight>
+      <TouchableHighlight
+        onPress={() => Linking.openURL(link)}>
         <Card
-          featuredTitle={name}
+          featuredTitle={title}
           featuredTitleStyle={featuredTitleStyle}
           image={{
-            uri: defaultImg
+            uri: image
           }}>
           <Text style={{ marginBottom: 10 }}>
-            {description}
+            {summary}
           </Text>
           <Divider style={{ backgroundColor: '#dfe6e9' }} />
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-            <Text style={noteStyle}>{name}</Text>
-            <Text style={noteStyle}>{date.datetime.month}-{date.datetime.day}-{date.datetime.year}</Text>
-
+            <Text style={noteStyle}>{author}</Text>
           </View>
         </Card>
       </TouchableHighlight>
     );
   }
 }
-export default HolidaySetup;
+export default BlogSetup;
 
 const styles = StyleSheet.create({
   noteStyle: {

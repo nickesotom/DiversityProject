@@ -13,6 +13,7 @@ import Education from './src/screens/Education';
 import Icon from '@expo/vector-icons/Ionicons';
 import { firebaseConfig } from './src/config/firebaseAPI';
 import Holiday from './src/screens/Holiday';
+import Blog from './src/screens/Blog'
 firebase.initializeApp(firebaseConfig);
 
 // git remote add origin [//your github url]
@@ -70,8 +71,8 @@ const WelcomeTabNavigator = createBottomTabNavigator({
       )
     }
   },
-  Holiday: {
-    screen: Holiday,
+  Blog: {
+    screen: Blog,
     navigationOptions: {
       tabBarIcon: ({ tintColor }) => (
         <Icon name="md-calendar" color={tintColor} size={24} />
@@ -121,8 +122,8 @@ export default createAppContainer(createSwitchNavigator({
   Events: {
     screen: AppDrawerNavigator
   },
-  Holiday: {
-    screen: Holiday
+  Blog: {
+    screen: Blog
   }
 }, {
     initialRouteName: 'Loading',
