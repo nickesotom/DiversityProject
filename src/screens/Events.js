@@ -96,22 +96,11 @@ class Events extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.msgBox}>
-          <TextInput 
-            placeholder='Name'
+          <TextInput
+            value={this.state.nameOfEvent}
+            placeholder='Enter Event Information'
             onChangeText={(name) => this.setState({nameOfEvent: name})}
             style={styles.textInput}/>
-
-          <TextInput
-            placeholder='DAte'
-            onChangeText={(date) => this.setState({ date: date })}
-            style={styles.textInput} />
-
-          <TextInput
-            placeholder='Location'
-            onChangeText={(location) => this.setState({ location: location })}
-            style={styles.textInput} />
-
-          
 
           <Button title='Send' onPress={this.addItem} />
           <Button title="Sign Out" onPress={this.handleSignOut} />
