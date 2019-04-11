@@ -14,8 +14,8 @@ import Icon from '@expo/vector-icons/Ionicons';
 import { firebaseConfig } from './src/config/firebaseAPI';
 import Holiday from './src/screens/Holiday';
 import Blog from './src/screens/Blog'
-firebase.initializeApp(firebaseConfig);
 
+firebase.initializeApp(firebaseConfig);
 // git remote add origin [//your github url]
 
 // //pull those changes

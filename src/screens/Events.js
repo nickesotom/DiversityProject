@@ -8,12 +8,12 @@ import {
   FlatList,
   Modal
 } from "react-native";
+import { Fab } from 'native-base';
 import * as firebase from 'firebase';
 import { firebaseConfig } from '../config/firebaseAPI'
-import { Card } from 'react-native-elements'
+import { Card, Icon } from 'react-native-elements'
 import { Constants } from "expo";
 import { TextInput } from "react-native-gesture-handler";
-
 class Events extends Component {
   
   constructor(props) {
@@ -69,7 +69,6 @@ class Events extends Component {
     if (!this.state.nameOfEvent) return;
 
     const newEvent = firebase.database().ref().child('events').push();
-    
 
     //TODO: figure out how to display all the information i need and then see if i can place them in a card viewer
 
@@ -79,10 +78,11 @@ class Events extends Component {
     // newLocation.set(this.state.location, () => this.setState({ location: '' }))
 
   }
-  
-  handleEventButton = () => {
-    alert('button pressed')
+
+  removeItem() {
+    return firebase.database().ref().child('events').remove();
   }
+  
   handleSignOut = () => {
     firebase.auth().signOut().then(() => {
       this.props.navigation.navigate('Login')
@@ -102,20 +102,32 @@ class Events extends Component {
             onChangeText={(name) => this.setState({nameOfEvent: name})}
             style={styles.textInput}/>
 
-          <Button title='Send' onPress={this.addItem} />
+          
           <Button title="Sign Out" onPress={this.handleSignOut} />
         </View>
         <FlatList 
           data={this.state.events}
           renderItem={({item}) => 
-            <View style={styles.listItemContainer}>
-              <Text style={styles.listItem}>
+            <View style={styles.note}>
+              <Text style={styles.noteText}>
                 {item}
               </Text>
+              <TouchableOpacity
+                style={styles.noteDelete}
+                onPress={this.removeItem}>
+                <Text style={styles.noteDeleteText}>D</Text>
+              </TouchableOpacity>
             </View>
           }
           keyExtractor={(item, index) => index.toString()}
         />
+
+        <TouchableOpacity 
+          style={styles.addButton}
+          onPress={this.addItem}>
+          <Text style={styles.addButtonText}>+</Text>
+        </TouchableOpacity>
+
       </View>
     );
   }
@@ -129,7 +141,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: Constants.statusBarHeight,
-    backgroundColor: '#eee'
+    backgroundColor: '#abcdef'
   },
   msgBox: {
     flexDirection: 'row',
@@ -139,17 +151,22 @@ const styles = StyleSheet.create({
   textInput: {
     flex: 1
   },
-  addEventButton: {
+  addButton: {
     position: 'absolute',
-    width: 60,
-    height: 60,
-    borderRadius: 60/2,
-    backgroundColor: '#abcdef',
+    zIndex: 11,
+    right: 30,
+    bottom: 30,
+    backgroundColor: '#e91e63',
+    width: 70,
+    height: 70,
+    borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    alignSelf: 'flex-end',
-    bottom: 20,
-    right: 20,
+    elevation: 8,
+  },
+  addButtonText: {
+    color: '#fff',
+    fontSize: 30,
   },
   listItemContainer: {
     backgroundColor: '#fff',
@@ -159,5 +176,31 @@ const styles = StyleSheet.create({
   listItem: {
     fontSize: 20,
     padding: 10
+  },
+  note: {
+    position: 'relative',
+    padding: 20,
+    paddingRight: 100,
+    borderBottomWidth: 2,
+    borderBottomColor: '#ededed',
+  },
+  noteText: {
+    paddingLeft: 20,
+    borderLeftWidth: 10,
+    borderLeftColor: '#e91e63',
+    fontSize: 20
+  },
+  noteDelete: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#2980b9',
+    padding: 10,
+    top: 10,
+    bottom: 10,
+    right: 10
+  },
+  noteDeleteText: {
+    color: 'white',
   }
 });
