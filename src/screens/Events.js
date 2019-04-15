@@ -27,19 +27,21 @@ class Events extends Component {
       currentUser: null,
     };
     this.addItem = this.addItem.bind(this);
+    this.removeItem = this.removeItem.bind(this);
+
   }
 
 
   componentDidMount() {
-    // const { currentUser } = firebase.auth()
-    // this.setState({ currentUser })
+    const { currentUser } = firebase.auth()
+    this.setState({ currentUser })
     firebase
       .database()
       .ref()
-      .child("events")
+      .child("events/")
       .once("value", snapshot => {
         const data = snapshot.val()
-        if (snapshot.val()) {
+        if (data) {
           const initEvents = [];
           Object
             .keys(data)
@@ -62,13 +64,13 @@ class Events extends Component {
           }))
         }
       })
-    
   }
   addItem() {
     // firebase function here for sending the data
     if (!this.state.nameOfEvent) return;
 
-    const newEvent = firebase.database().ref().child('events').push();
+    const newEvent = firebase.database().ref().child('events/').push();
+    
 
     //TODO: figure out how to display all the information i need and then see if i can place them in a card viewer
 
@@ -80,14 +82,15 @@ class Events extends Component {
   }
 
   removeItem() {
-    return firebase.database().ref().child('events').remove();
+    const base = firebase.database().ref('events')
+    
+    alert(firebase.database().ref('events/').set(null))
   }
   
   handleSignOut = () => {
     firebase.auth().signOut().then(() => {
       this.props.navigation.navigate('Login')
     }).catch(error => this.setState({ errorMessage: error.message }))
-  
   }
   
   render() {
@@ -125,7 +128,8 @@ class Events extends Component {
         <TouchableOpacity 
           style={styles.addButton}
           onPress={this.addItem}>
-          <Text style={styles.addButtonText}>+</Text>
+          <Icon name="create" color={'white'} size={25} />
+          
         </TouchableOpacity>
 
       </View>
@@ -141,7 +145,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: Constants.statusBarHeight,
-    backgroundColor: '#abcdef'
+    backgroundColor: '#fff'
   },
   msgBox: {
     flexDirection: 'row',
@@ -162,7 +166,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    elevation: 8,
   },
   addButtonText: {
     color: '#fff',
@@ -187,7 +190,7 @@ const styles = StyleSheet.create({
   noteText: {
     paddingLeft: 20,
     borderLeftWidth: 10,
-    borderLeftColor: '#e91e63',
+    borderLeftColor: '#abcdef',
     fontSize: 20
   },
   noteDelete: {
