@@ -10,7 +10,7 @@ import Events from './src/screens/Events';
 import News from './src/screens/News';
 import Stories from './src/screens/Stories';
 import Education from './src/screens/Education';
-import Icon from '@expo/vector-icons/Ionicons';
+import { Ionicons } from '@expo/vector-icons';
 import { firebaseConfig } from './src/config/firebaseAPI';
 import Holiday from './src/screens/Holiday';
 import Blog from './src/screens/Blog'
@@ -43,7 +43,7 @@ const WelcomeTabNavigator = createBottomTabNavigator({
     screen: Events,
     navigationOptions: {
       tabBarIcon: ({ tintColor }) => (
-        <Icon name="md-filing" color={tintColor} size={24} />
+        <Ionicons name="md-filing" color={tintColor} size={24} />
       )
     }
   },
@@ -51,7 +51,7 @@ const WelcomeTabNavigator = createBottomTabNavigator({
     screen: News,
     navigationOptions: {
       tabBarIcon: ({ tintColor }) => (
-        <Icon name="md-paper" color={tintColor} size={24} />
+        <Ionicons name="md-paper" color={tintColor} size={24} />
       )
     }
   },
@@ -59,7 +59,7 @@ const WelcomeTabNavigator = createBottomTabNavigator({
     screen: Stories,
     navigationOptions: {
       tabBarIcon: ({ tintColor }) => (
-        <Icon name="md-book" color={tintColor} size={24} />
+        <Ionicons name="md-book" color={tintColor} size={24} />
       )
     }
   },
@@ -67,7 +67,7 @@ const WelcomeTabNavigator = createBottomTabNavigator({
     screen: Education,
     navigationOptions: {
       tabBarIcon: ({ tintColor }) => (
-        <Icon name="md-information-circle-outline" color={tintColor} size={24} />
+        <Ionicons name="md-information-circle-outline" color={tintColor} size={24} />
       )
     }
   },
@@ -75,7 +75,7 @@ const WelcomeTabNavigator = createBottomTabNavigator({
     screen: Blog,
     navigationOptions: {
       tabBarIcon: ({ tintColor }) => (
-        <Icon name="md-calendar" color={tintColor} size={24} />
+        <Ionicons name="md-calendar" color={tintColor} size={24} />
       )
     }
   },
@@ -97,7 +97,7 @@ const WelcomeStackNavigator = createStackNavigator({
   defaultNavigationOptions:({navigation}) => {
     return {
       headerLeft:(
-        <Icon style={{paddingLeft: 10}} onPress={() => navigation.openDrawer()} name="md-menu" size={30}/>
+        <Ionicons style={{paddingLeft: 10}} onPress={() => navigation.openDrawer()} name="md-menu" size={30}/>
       )
     }
   }
