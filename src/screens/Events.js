@@ -8,10 +8,12 @@ import {
   FlatList,
   Modal
 } from "react-native";
+import { Ionicons } from '@expo/vector-icons';
+
 import { Fab } from 'native-base';
 import * as firebase from 'firebase';
 import { firebaseConfig } from '../config/firebaseAPI'
-import { Card, Icon } from 'react-native-elements'
+import { Card } from 'react-native-elements'
 import { Constants } from "expo";
 import { TextInput } from "react-native-gesture-handler";
 class Events extends Component {
@@ -118,7 +120,7 @@ class Events extends Component {
               <TouchableOpacity
                 style={styles.noteDelete}
                 onPress={this.removeItem}>
-                <Text style={styles.noteDeleteText}>D</Text>
+                <Ionicons name="md-trash" color={'white'} size={25}/>
               </TouchableOpacity>
             </View>
           }
@@ -128,7 +130,7 @@ class Events extends Component {
         <TouchableOpacity 
           style={styles.addButton}
           onPress={this.addItem}>
-          <Icon name="create" color={'white'} size={25} />
+          <Text style={{color: 'white'}}>Send</Text>
           
         </TouchableOpacity>
 
