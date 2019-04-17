@@ -68,7 +68,7 @@ class Events extends Component {
   addItem() {
     // firebase function here for sending the data
     if (!this.state.nameOfEvent) return;
-
+    
     const newEvent = firebase.database().ref().child('events/').push();
     
 
