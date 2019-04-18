@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { 
   FlatList,
-  StyleSheet
+  StyleSheet,
+  View
 } from "react-native";
 import NewsSetup from '../components/NewsSetup';
 import { getUSNews } from '../components/fetchNews';
@@ -33,13 +34,16 @@ class News extends Component {
   }
   render() {
     return(
-      <FlatList
-        data={this.state.articles}
-        renderItem={({ item }) => <NewsSetup article={item} />}
-        keyExtractor={item => item.url}
-        refreshing={this.state.refreshing}
-        onRefresh={this.handleRefresh.bind(this)}
-      />
+      <View style={styles.container}>
+        <FlatList
+          data={this.state.articles}
+          renderItem={({ item }) => <NewsSetup article={item} />}
+          keyExtractor={item => item.url}
+          refreshing={this.state.refreshing}
+          onRefresh={this.handleRefresh.bind(this)}
+        />
+      </View>
+      
     )
   }
 }
@@ -49,6 +53,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: '#DB7093'
   }
 });
