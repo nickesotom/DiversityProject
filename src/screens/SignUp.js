@@ -5,7 +5,6 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  Button,
   Platform
 } from "react-native";
 import Icon from '@expo/vector-icons/Ionicons';
@@ -17,11 +16,19 @@ class SignUp extends Component {
     confirmPassword: '',
     errorMessage: null
   }
+
+  handleSignOut = () => {
+    firebase.auth().signOut().then(() => {
+      this.props.navigation.navigate('Login')
+    }).catch(error => this.setState({ errorMessage: error.message }))
+  }
+
   handleSignUp = () => {
     if (this.state.password !== this.state.confirmPassword) {
       alert('Sorry! Passwords must be identical.');
     } else {
-      firebase.auth()
+      firebase
+        .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.password)
         .then(() => this.props.navigation.navigate('Events'))
         .catch(function (error) {
@@ -33,6 +40,13 @@ class SignUp extends Component {
           }
         });
       }
+    }
+
+    handleGuestSignUp = () => {
+      firebase
+      .auth()
+      .signInAnonymously()
+      .then(() => this.props.navigation.navigate('Events'))
     }
 
   render() {
@@ -75,6 +89,11 @@ class SignUp extends Component {
           onPress={() => this.props.navigation.navigate('Login')}>
           <Text style={styles.switchToLoginButton}>Already have an account? Login</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={this.handleGuestSignUp}>
+          <Text style={styles.switchToLoginButton}>Login as guest</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -112,7 +131,20 @@ const styles = StyleSheet.create({
   },
   switchToLoginButton: {
     color: '#fff',
-    fontSize: 18
+    fontSize: 18,
+    paddingBottom: 30
+
+  },
+  loginWithGuest: {
+    color: '#fff',
+    fontSize: 18,
+    position: 'absolute',
+    bottom: -100,
+    right: -60
+
+    
+    // backgroundColor: '#fff',
+    
   },
   imageStyle: {
     padding: 10,

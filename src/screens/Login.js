@@ -30,18 +30,25 @@ export default class Login extends Component {
   handleLogin = () => {
     const { email, password } = this.state;
     firebase.auth()
-    .signInWithEmailAndPassword(email, password)
-    .then(() => this.props.navigation.navigate('Events'))
-    .catch(function (error) {
-      // this.setState({ errorMessage: error.message })
-      if (error.code == "auth/invalid-email") {
-        alert('Please enter a valid email.');
-      } else if(error.code == "auth/user-not-found") {
-        alert('Invalid email or password.')
-      } else {
-        alert(error.message);
-      }
+      .signInWithEmailAndPassword(email, password)
+      .then(() => this.props.navigation.navigate('Events'))
+      .catch(function (error) {
+        // this.setState({ errorMessage: error.message })
+        if (error.code == "auth/invalid-email") {
+          alert('Please enter a valid email.');
+        } else if(error.code == "auth/user-not-found") {
+          alert('Invalid email or password.')
+        } else {
+          alert(error.message);
+        }
     });
+  }
+
+  handleGuestSignUp = () => {
+    firebase
+      .auth()
+      .signInAnonymously()
+      .then(() => this.props.navigation.navigate('Events'))
   }
 
   render() {
@@ -78,6 +85,11 @@ export default class Login extends Component {
           onPress={() => this.props.navigation.navigate('SignUp')}>
           <Text style={styles.switchToSignUp}>Don't have an account? Sign up</Text>
         </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={this.handleGuestSignUp}>
+          <Text style={styles.switchToSignUp}>Login as guest</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -108,12 +120,20 @@ const styles = StyleSheet.create({
     width: 240,
     alignItems: 'center'
   },
+  loginWithGuest: {
+    color: '#fff',
+    fontSize: 18,
+    position: 'absolute',
+    bottom: -100,
+    right: -60   
+  },
   loginText: {
     color: '#000',
     fontWeight: 'bold'
   },
   switchToSignUp: {
     color: '#fff',
-    fontSize: 18
+    fontSize: 18,
+    paddingBottom: 30
   }
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
 // import firebaseConfig from './config';
 import * as firebase from 'firebase';
 import { createAppContainer, createSwitchNavigator, createDrawerNavigator, createBottomTabNavigator, createStackNavigator } from 'react-navigation';
@@ -14,7 +14,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { firebaseConfig } from './src/config/firebaseAPI';
 import Holiday from './src/screens/Holiday';
 import Blog from './src/screens/Blog'
-
+import MenuDrawer from './src/components/MenuDrawer'
 firebase.initializeApp(firebaseConfig);
 // git remote add origin [//your github url]
 
@@ -36,7 +36,13 @@ firebase.initializeApp(firebaseConfig);
 //     );
 //   }
 // }
-
+const WIDTH = Dimensions.get('window').width;
+const DrawerConfig = {
+  drawerWidth: WIDTH * 0.83,
+  contentComponent: ({ navigation }) => {
+    return (<MenuDrawer navigation={navigation} />)
+  }
+}
 
 const WelcomeTabNavigator = createBottomTabNavigator({
   Events: {
@@ -107,7 +113,7 @@ const AppDrawerNavigator = createDrawerNavigator({
   Dashboard: {
     screen: WelcomeStackNavigator
   }
-})
+}, DrawerConfig);
 
 export default createAppContainer(createSwitchNavigator({
   Loading: {

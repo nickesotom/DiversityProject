@@ -28,7 +28,8 @@ class Events extends Component {
       // location: '',
       events: [],
       currentUser: null,
-      refreshing: false
+      refreshing: false,
+      showTextInput: false,
     };
     this.addItem = this.addItem.bind(this);
     // this.removeItem = this.removeItem.bind(this);
@@ -39,7 +40,10 @@ class Events extends Component {
   componentDidMount() {
     const { currentUser } = firebase.auth()
     this.setState({ currentUser })
-
+    const userID = firebase.auth().currentUser.uid
+    if (userID === '5PLcGDdjjTasMeaqWi83Ggyy3Ll2') {
+      this.setState({showTextInput: true})
+    }
     
 
     // firebase
@@ -68,7 +72,6 @@ class Events extends Component {
     firebase
       .database()
       .ref("events")
-      
       .on("child_added", snapshot => {
         const data = snapshot.val();
         if (data) {
@@ -77,21 +80,21 @@ class Events extends Component {
           }))
         }
       })
-
   }
   addItem() {
     // firebase function here for sending the data
     if (!this.state.nameOfEvent) return;
-    let key = firebase.database().ref('/events').push().key
-    firebase.database().ref('/events').child(key).set(this.state.nameOfEvent, () => this.setState({nameOfEvent: ''}))
+    // let key = firebase.database().ref('/events').push().key
+    // firebase.database().ref('/events').child(key).set(this.state.nameOfEvent, () => this.setState({nameOfEvent: ''}))
     // firebase.database().ref('/events').child(key).set({name: data})
 
-    // const newEvent = firebase.database().ref().child('events/').push();
+    const newEvent = firebase.database().ref().child('events/').push();
     
 
     //TODO: figure out how to display all the information i need and then see if i can place them in a card viewer
-
-    // newEvent.set(this.state.nameOfEvent, () => this.setState({ nameOfEvent: '' }))
+    
+    newEvent.set(this.state.nameOfEvent, () => this.setState({ nameOfEvent: '' }))
+    
 
     // newDate.set(this.state.date, () => this.setState({ date: '' }))
     // newLocation.set(this.state.location, () => this.setState({ location: '' }))
@@ -102,11 +105,11 @@ class Events extends Component {
     
   }
   
-  handleSignOut = () => {
-    firebase.auth().signOut().then(() => {
-      this.props.navigation.navigate('Login')
-    }).catch(error => this.setState({ errorMessage: error.message }))
-  }
+  // handleSignOut = () => {
+  //   firebase.auth().signOut().then(() => {
+  //     this.props.navigation.navigate('Login')
+  //   }).catch(error => this.setState({ errorMessage: error.message }))
+  // }
 
   handleRefresh = () => {
     const res = firebase
@@ -134,26 +137,27 @@ class Events extends Component {
     
     const { currentUser } = this.state;
     return (
-      <View style={styles.container}>
+      <View style={styles.container}>{
+        this.state.showTextInput &&
         <View style={styles.msgBox}>
-          <TextInput
+          <TextInput 
             value={this.state.nameOfEvent}
             // multiline={true}
             placeholder='Enter Event Information'
             onChangeText={(name) => this.setState({nameOfEvent: name})}
             style={styles.textInput}/>
-         
-            
-          
-           {/*<Button title="Sign Out" onPress={this.handleSignOut} />*/}
         </View>
+      } 
+        {this.state.showTextInput &&
+        
         <TouchableOpacity
           style={styles.addButton}
-          onPress={() => this.addItem(this.state.nameOfEvent)}>
+          onPress={this.addItem}>
 
-          <Text style={{ color: 'white' }}>Send</Text>
+          <Text style={{ color: 'white', fontSize: 20 }}>Send</Text>
 
-        </TouchableOpacity>
+        </TouchableOpacity>}
+
         <FlatList 
           data={this.state.events}
           refreshing={this.state.refreshing}
@@ -165,14 +169,11 @@ class Events extends Component {
                 
               </Text>
               <TouchableOpacity
-                style={styles.noteDelete}
-                >
-                <Ionicons name="md-trash" color={'white'} size={25}/>
+                style={styles.noteDelete}>
+                {/*<Ionicons name="md-trash" color={'white'} size={25}/>*/}
               </TouchableOpacity>
             </View>
           }
-          // extraData={this.state}
-          
           keyExtractor={(item, index) => index.toString()}
         />
       </View>
@@ -192,30 +193,33 @@ const styles = StyleSheet.create({
   
   msgBox: {
     flexDirection: 'row',
-    padding: 20,
+    // padding: 20,
     backgroundColor: '#fff',
-    borderRadius: 5,
-    paddingLeft: 40
+    borderRadius: 10,
+    paddingLeft: 40,
+    height: 55,
+    width: '70%',
+    right: 60,
   },
   textInput: {
     flex: 1
   },
   addButton: {
-    position: 'absolute',
+    // position: 'absolute',
     zIndex: 11,
-    right: 10,
     backgroundColor: '#e91e63',
-    width: 70,
-    height: 40,
-    bottom: 10,
+    width: 90,
+    height: 55,
+    alignSelf: 'flex-end',
     borderRadius: 10,
+    marginTop: -5,
+    bottom: 51,
     alignItems: 'center',
     justifyContent: 'center',
   },
   addButtonText: {
     color: '#fff',
-    fontSize: 30,
-
+    fontSize: 100,
   },
   note: {
     position: 'relative',
@@ -223,12 +227,11 @@ const styles = StyleSheet.create({
     paddingRight: 100,
     borderBottomWidth: 2,
     borderBottomColor: '#ededed',
-    
   },
   noteText: {
     paddingLeft: 20,
     borderLeftWidth: 10,
-    borderLeftColor: '#5B2C6F',
+    borderLeftColor: '#D3D3D3',
     fontSize: 20,
     color: '#424949'
   },
