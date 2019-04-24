@@ -9,7 +9,6 @@ import Login from './src/screens/Login';
 import Events from './src/screens/Events';
 import News from './src/screens/News';
 import Stories from './src/screens/Stories';
-import Education from './src/screens/Education';
 import { Ionicons } from '@expo/vector-icons';
 import { firebaseConfig } from './src/config/firebaseAPI';
 import Holiday from './src/screens/Holiday';
@@ -66,14 +65,6 @@ const WelcomeTabNavigator = createBottomTabNavigator({
     navigationOptions: {
       tabBarIcon: ({ tintColor }) => (
         <Ionicons name="md-book" color={tintColor} size={24} />
-      )
-    }
-  },
-  Education: {
-    screen: Education,
-    navigationOptions: {
-      tabBarIcon: ({ tintColor }) => (
-        <Ionicons name="md-information-circle-outline" color={tintColor} size={24} />
       )
     }
   },

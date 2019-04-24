@@ -40,8 +40,8 @@ class Events extends Component {
   componentDidMount() {
     const { currentUser } = firebase.auth()
     this.setState({ currentUser })
-    const userID = firebase.auth().currentUser.uid
-    if (userID === '5PLcGDdjjTasMeaqWi83Ggyy3Ll2') {
+    const userID = firebase.auth().currentUser.email
+    if (userID === 'test123@gmail.com') {
       this.setState({showTextInput: true})
     }
     

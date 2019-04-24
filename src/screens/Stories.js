@@ -9,6 +9,16 @@ import {
   Container, Header, Content, Accordion
 } from 'native-base'
 import Hyperlink from 'react-native-hyperlink'
+
+
+
+
+const a = 1;
+var b = 2;
+let c = 3;
+name = 'Nick'
+console.log('Hello World')
+
 const dataArray = [
   { 
     title: 'Elizabeth Campa, LASO',
