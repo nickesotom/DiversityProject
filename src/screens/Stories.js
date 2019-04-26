@@ -11,14 +11,7 @@ import {
 import Hyperlink from 'react-native-hyperlink'
 
 
-
-
-const a = 1;
-var b = 2;
-let c = 3;
-name = 'Nick'
-console.log('Hello World')
-
+// this is just an array to store the information within the screen
 const dataArray = [
   { 
     title: 'Elizabeth Campa, LASO',
@@ -29,12 +22,15 @@ const dataArray = [
     'LASO is not just big on helping other committees on campus, but with helping people during community service where they recently created feminine packs to help homeless women.'
   }
 ]
+
+// these hold the urls of each of the committees where contact information/where to sign up to be a member will be placed
 const url = {
   laso: 'https://lewisu.presence.io/organization/latin-american-student-organization',
   bsa: 'https://lewisu.presence.io/organization/black-student-association',
   gsa: 'https://lewisu.presence.io/organization/gender-sexuality-alliance',
   gospel: 'https://lewisu.presence.io/organization/gospel-choir'
 }
+// this is just all the rendering which you will already see on screen
 class Stories extends Component {
   static navigationOptions
   render() {

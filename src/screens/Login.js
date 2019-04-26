@@ -27,8 +27,12 @@ export default class Login extends Component {
     password: '',
     errorMessage: null
   }
+  // this is where the login stuff actually happens
   handleLogin = () => {
+    //this state portion isn't as important, just variables being set
     const { email, password } = this.state;
+    //this is where firebase actually authenticates the user which is pretty self explanatory. just signing in with what the user puts in
+    //and then catches error codes
     firebase.auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => this.props.navigation.navigate('Events'))
@@ -44,6 +48,7 @@ export default class Login extends Component {
     });
   }
 
+  //does the same thing but handles guest user sign up
   handleGuestSignUp = () => {
     firebase
       .auth()
@@ -51,6 +56,7 @@ export default class Login extends Component {
       .then(() => this.props.navigation.navigate('Events'))
   }
 
+  // this just does the rendering of all the on screen stuff
   render() {
     return (
       <View style={styles.container}>

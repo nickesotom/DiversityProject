@@ -19,7 +19,8 @@ class News extends Component {
     this.fetchNews = this.fetchNews.bind(this);
   }
   
-
+  // only thing that's really important here is that this takes information from a news API that's JSON, uses a method
+  // to receive that data and then places it into the app. the refresh on a new article happens every 15 minutes
   componentDidMount() {
     this.fetchNews();
   }
