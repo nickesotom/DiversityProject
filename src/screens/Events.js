@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#AED6F1'
+    backgroundColor: '#d3d3d3'
   },
   
   msgBox: {

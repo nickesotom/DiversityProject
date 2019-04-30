@@ -43,7 +43,7 @@ class Stories extends Component {
             // linkDefault={true}
             onPress={() => Linking.openURL(url.laso)}>
             <Text style={{ fontSize: 16, padding: 20 }}>
-              You can find more information on how to get in contact or become a member of LASO https://lewisu.presence.io/organization/latin-american-student-organization
+              You can find more information on how to get in contact or become a member of LASO {url.laso}
             </Text>
           </Hyperlink>
           <Accordion
@@ -54,6 +54,36 @@ class Stories extends Component {
             iconStyle={{ color: "green" }}
             expandedIconStyle={{ color: "red" }}
           />
+          <Hyperlink
+            linkStyle={{ color: '#2980b9', fontSize: 16 }}
+            linkText={url => url === 'https://lewisu.presence.io/organization/black-student-association' ? 'here' : url}
+            // linkDefault={true}
+            onPress={() => Linking.openURL(url.bsa)}>
+            <Text style={{ fontSize: 16, padding: 20 }}>
+              You can find more information on how to get in contact or become a member of BSA {url.bsa}
+            </Text>
+          </Hyperlink>
+
+          <Hyperlink
+            linkStyle={{ color: '#2980b9', fontSize: 16 }}
+            linkText={url => url === 'https://lewisu.presence.io/organization/gender-sexuality-alliance' ? 'here' : url}
+            // linkDefault={true}
+            onPress={() => Linking.openURL(url.gsa)}>
+            <Text style={{ fontSize: 16, padding: 20 }}>
+              You can find more information on how to get in contact or become a member of GSA {url.gsa}
+            </Text>
+          </Hyperlink>
+
+          <Hyperlink
+            linkStyle={{ color: '#2980b9', fontSize: 16 }}
+            linkText={url => url === 'https://lewisu.presence.io/organization/gospel-choir' ? 'here' : url}
+            // linkDefault={true}
+            onPress={() => Linking.openURL(url.gospel)}>
+            <Text style={{ fontSize: 16, padding: 20 }}>
+              You can find more information on how to get in contact or become a member of Gospel Choir {url.gospel}
+            </Text>
+          </Hyperlink>
+          
         </Content>
       </Container>
     );
