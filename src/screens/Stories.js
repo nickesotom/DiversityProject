@@ -31,6 +31,7 @@ const url = {
   gospel: 'https://lewisu.presence.io/organization/gospel-choir'
 }
 // this is just all the rendering which you will already see on screen
+// the hyperlink and accordion is what actually displays that information to the user
 class Stories extends Component {
   static navigationOptions
   render() {
